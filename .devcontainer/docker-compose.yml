@@ -18,13 +18,11 @@ services:
       dockerfile: Dockerfile
 
     volumes:
-      # This uses your host operating system's file system (slow for Mac/Windows)
-      - ..:/workspace:cached
+      # Uncomment the next line if using host operating system's file system
+      # - ..:/workspace:cached
 
-      # Uncomment the line below and comment the line above to use docker volume instead
-      # of host operating system's file system (much faster for Mac/Windows).
-      # (requires line in devcontainer.json to be also uncommented)
-      # - workspace:/workspace
+      # Comment the next line if using host operating system's file system
+      - workspace:/workspace
 
       # Add .wallaby folder from home for licensing and wallaby update files
       - ~/.wallaby:/home/node/.wallaby
@@ -32,7 +30,7 @@ services:
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
 
-# Uncomment the lines below if using docker volume
-# volumes:
-#   workspace:
-#     driver: local
+# Comment the lines below if using host operating system's file system
+volumes:
+  workspace:
+    driver: local

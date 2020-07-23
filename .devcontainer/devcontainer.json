@@ -21,8 +21,8 @@
 	// Uncomment the next line if you want to keep your containers running after VS Code shuts down.
 	// "shutdownAction": "none",
 
-	// Uncomment the next line if using a docker volume instead of host operating system's file system
-	// "postCreateCommand": "sudo chown node /workspace && git clone https://github.com/wallabyjs/wallaby-vscode-remote-containers.git /workspace",
+	// Comment the next line if using host operating system's file system
+	"postCreateCommand": "sudo chown node /workspace && git clone https://github.com/wallabyjs/wallaby-vscode-remote-containers.git /workspace && npm install",
 
 	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "node"

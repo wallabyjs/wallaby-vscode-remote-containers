@@ -1,0 +1,38 @@
+#-------------------------------------------------------------------------------------------------------------
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License. See https://go.microsoft.com/fwlink/?linkid=2090316 for license information.
+#-------------------------------------------------------------------------------------------------------------
+
+version: '3'
+services:
+  wallaby-example:
+    # Uncomment the next line to use a non-root user for all processes. You can also
+    # simply use the "remoteUser" property in devcontainer.json if you just want VS Code
+    # and its sub-processes (terminals, tasks, debugging) to execute as the user. On Linux,
+    # you may need to update USER_UID and USER_GID in .devcontainer/Dockerfile to match your
+    # user if not 1000. See https://aka.ms/vscode-remote/containers/non-root for details.
+    # user: vscode
+
+    build: 
+      context: .
+      dockerfile: Dockerfile
+
+    volumes:
+      # This uses your host operating system's file system (slow for Mac/Windows)
+      - ..:/workspace:cached
+
+      # Uncomment the line below and comment the line above to use docker volume instead
+      # of host operating system's file system (much faster for Mac/Windows).
+      # (requires line in devcontainer.json to be also uncommented)
+      # - workspace:/workspace
+
+      # Add .wallaby folder from home for licensing and wallaby update files
+      - ~/.wallaby:/home/node/.wallaby
+
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+
+# Uncomment the lines below if using docker volume
+# volumes:
+#   workspace:
+#     driver: local
